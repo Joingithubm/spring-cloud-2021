@@ -18,6 +18,11 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: cloud-payment-service8001
+    prefer-ip-address: true   #访问路径可以显示ip地址
+    lease-renewal-interval-in-seconds: 30 # eureka客户端向服务端发送心跳的时间
+    lease-expiration-duration-in-seconds: 90 # Eureka服务端在收到最后一次后等待时间上限，单位为秒
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

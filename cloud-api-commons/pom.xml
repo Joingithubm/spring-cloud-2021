@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-api-commons</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -30,4 +31,24 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+<!--                    <fork>true</fork>
+                    <addResources>true</addResources>-->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
