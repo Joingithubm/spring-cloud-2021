@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description:
@@ -37,6 +38,17 @@ public class PaymentContoller {
     public CommonResult getPaymentById(@PathVariable("id") Long id){
         Payment paymentById = paymentService.getPaymentById(id);
         return new CommonResult<Payment>(200,"查询结果:"+serverPort,paymentById);
+    }
+
+    @GetMapping("/feign/timeout")
+    public String timeout() {
+       try {
+           TimeUnit.SECONDS.sleep(3);
+       }catch (Exception exception){
+
+       }
+
+        return serverPort;
     }
 
 }

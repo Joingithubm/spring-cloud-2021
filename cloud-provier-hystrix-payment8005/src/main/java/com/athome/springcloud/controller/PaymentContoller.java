@@ -1,12 +1,9 @@
 package com.athome.springcloud.controller;
 
-import ch.qos.logback.core.util.TimeUtil;
 import com.athome.springcloud.entities.CommonResult;
 import com.athome.springcloud.entities.Payment;
 import com.athome.springcloud.service.PaymentService;
-import io.micrometer.core.instrument.util.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -72,12 +69,16 @@ public class PaymentContoller {
 
     @GetMapping("/feign/timeout")
     public String timeout() {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         return serverPort;
+    }
+
+    @GetMapping("/hystrix/ok")
+    public String ok() {
+        return paymentService.paymentInfo_OK(Integer.valueOf(serverPort));
+    }
+
+    @GetMapping("/hystrix/timeout")
+    public String hystrixTimeout() {
+        return paymentService.paymentInfo_TimeOut(Integer.valueOf(serverPort));
     }
 }
