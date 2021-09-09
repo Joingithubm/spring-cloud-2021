@@ -81,4 +81,9 @@ public class PaymentContoller {
     public String hystrixTimeout() {
         return paymentService.paymentInfo_TimeOut(Integer.valueOf(serverPort));
     }
+
+    @GetMapping("/hystrix/circuit/{id}")
+    public String circuit(@PathVariable("id") Integer id) {
+        return paymentService.paymentCircuitBreaker(id);
+    }
 }
