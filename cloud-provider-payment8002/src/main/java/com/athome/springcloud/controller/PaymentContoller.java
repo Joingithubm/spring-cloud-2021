@@ -42,12 +42,6 @@ public class PaymentContoller {
 
     @GetMapping("/feign/timeout")
     public String timeout() {
-       try {
-           TimeUnit.SECONDS.sleep(3);
-       }catch (Exception exception){
-
-       }
-
         return serverPort;
     }
 
